@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GeTaskFilterDto } from './dto/get-task-filter.dto';
@@ -32,6 +34,7 @@ export class TasksController {
     return this.tasksService.getTaskById(id);
   }
   @Post()
+  @UsePipes(ValidationPipe)
   creatTask(@Body() createTaskDto: CreateTaskDto): Task {
     const data = this.tasksService.createTask(createTaskDto);
     console.log('data', data);
