@@ -1,6 +1,10 @@
+/* eslint-disable prettier/prettier */
+import { IsOptional } from 'class-validator';
 import { TaskStatus } from '../task.model';
 
 export class GeTaskFilterDto {
-  status: TaskStatus;
-  search: string;
+    @IsOptional()
+    status: TaskStatus;
+    @IsOptional()
+    search: string;
 }
