@@ -24,7 +24,7 @@
 
 ## Description
 
- Hello,
+Hello,
 This is snippet standing code; allows the Nestjs beginner to learn the basic concept of the framework
 
 ## Installation
