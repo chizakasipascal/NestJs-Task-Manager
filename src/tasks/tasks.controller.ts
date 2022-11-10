@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
@@ -12,13 +13,14 @@ import {
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GeTaskFilterDto } from './dto/get-task-filter.dto';
+import { TaskStatusValidationPipes } from './pipes/Tasks-Status-Validation.pipes';
 
 import { Task, TaskStatus } from './task.model';
 import { TasksService } from './tasks.service';
 
 @Controller('tasks')
 export class TasksController {
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService) { }
 
   @Get()
   getTasks(@Query() filterDto: GeTaskFilterDto): Task[] {
@@ -47,7 +49,7 @@ export class TasksController {
   @Patch('/:id/status')
   updateTaskStatus(
     @Param('id') id: string,
-    @Body('status') status: TaskStatus,
+    @Body('status', TaskStatusValidationPipes) status: TaskStatus,
   ): Task {
     const dataUpadate = this.tasksService.updateTaskStatus(id, status);
     console.log('updateTaskStatus', dataUpadate);
